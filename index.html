@@ -102,7 +102,7 @@
             <button class="btn btn-warning" onclick="prepararCancion(${i},'${c.id
           }')">Editar</button>
             <button class="btn btn-danger" onclick="eliminarCancion(${i},'${c.id
-          }')">Eliminar</button>
+          }','${c.titulo}')">Eliminar</button>
           </td>
         </tr>
       `;
@@ -125,12 +125,23 @@
       tono: tono.value,
     };
     console.log(data);
-    axios.post(url, data).then(() => getData());
+    axios.post(url, data)
+      .then((response) => {
+        // Muestra el mensaje devuelto por el backend en un alert
+        alert(response.data.message); // Aquí mostramos el mensaje de éxito
+        // Recargar los datos
+        getData();
+      })
+      .catch((error) => {
+        // Muestra un mensaje de error si algo sale mal
+        console.error(error);
+        alert("Hubo un error al agregar la canción.");
+      });
   }
 
-  function eliminarCancion(i, id) {
+  function eliminarCancion(i, id, titulo) {
     axios.delete(url + "/" + id).then(() => {
-      alert("Canción " + canciones[i].titulo + " eliminada");
+      alert("Canción " + titulo + " eliminada");
       getData();
     });
   }
