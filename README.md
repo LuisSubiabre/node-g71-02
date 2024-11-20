@@ -1,6 +1,6 @@
 ## Instrucciones:
 ### Clonar repositorio:
-```git clone```
+```git clone git@github.com:LuisSubiabre/node-g71-02.git```
 
 ### Levantar el Backend:
 1.- ```cd node-g71-02```<br>
